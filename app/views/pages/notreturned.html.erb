@@ -1,0 +1,36 @@
+<br />
+<% if @rents.count > 0 %>
+<h1 align=center>Essa Galera ainda não devolveu! </h1>
+
+<table class="pure-table pure-table-horizontal">
+  <thead>
+    <tr>
+      <th>Aluno</th>
+      <th>Livro</th>
+      <th>Devolveu?</th>
+      <th>Quando Trazer de volta?</th>
+      <th>Dias em atraso </th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rents.each do |rent| %>
+      <tr align="center">
+        <td data-label="Aluno" ><%= link_to rent.student.name_with_phone, student_url(rent.student_id) %></td>
+        <td data-label="Livro"><%= rent.book.name if rent.book %></td>
+        <td data-label="Devolveu?"><%= rent.retur %></td>
+        <td data-label="Devolveria"><%= rent.bring_back.strftime("%d %b %Y ") %></td>
+        <td data-label="Dias em atraso" border-style=outset;><%= (Date.today-rent.bring_back).to_i %></td>
+        <td><%= button_to "Devolver", action: :bring, controller: :rents, id: rent.id  %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+  <% else %>
+    <br /><center>
+    <h1>Nenhum aluno está devendo livro :D </h1>
+
+    <h4>Selecione uma outra opção no menu ao lado</h4>
+  </center>
+  <% end %>

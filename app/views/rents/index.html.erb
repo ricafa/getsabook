@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+
+<% if @rents.count == 0 %>
+<br /><br /><br />
+<h1 align='center'>Nenhum Livro Emprestado =,(</h1> <br />
+<h2 align='center'>Que tal oferecer um livro pra alguém? ;)</h2>
+<center>
+<%= link_to 'Novo emprestimo ', new_rent_path, class: "pure-button" %>
+</center
+<br /><br />
+<% else %>
+<h1 align=center>Emprestados</h1>
+<center>
+<%= link_to 'Novo empréstimo', new_rent_path, class: "pure-button" %>
+</center
+<br /><br />
+<table >
+  <thead>
+    <tr>
+      <th>Aluno</th>
+      <th>Livro</th>
+      <th>Devolveu</th>
+      <th>Quando traz de volta</th>
+      <th>Observação</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rents.each do |rent| %>
+      <tr>
+        <td data-label="Aluno"><%= link_to rent.student.name_with_phone, student_url(rent.student_id) %></td>
+        <td data-label="Livro"><%= rent.book.name if rent.book %></td>
+        <td data-label="Returned"><%= rent.retur %></td>
+        <td data-label="Devolver"><%= rent.bring_back.strftime("%d %b %Y ") %></td>
+        <td data-label="Observação"><%= rent.obs %></td>
+        <td><%= link_to 'Ver mais', rent, class: "pure-button" %>
+            <%= link_to 'Editar', edit_rent_path(rent), class: "pure-button" %>
+            <%= button_to "Devolver", form_class: "pure-button", action: :bring, controller: :rents, id: rent.id %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% end %>
+
+<br>

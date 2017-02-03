@@ -1,0 +1,39 @@
+<%= form_for(rent) do |f| %>
+  <% if rent.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rent.errors.count, "error") %> prohibited this rent from being saved:</h2>
+
+      <ul>
+      <% rent.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="pure-form">
+  <div class="field">
+    <label>Aluno</label>
+    <%= f.collection_select(:student_id, Student.where(blocked: false), :id, :rented, {prompt: "Selecione um aluno"}) %>
+  </div>
+
+  <div class="field">
+    <label>Livro</label>
+    <%= f.collection_select(:book_id, Book.where(available: true), :id, :name, {prompt: "Selecione um livro"}) %>
+  </div>
+
+  <div class="field">
+    <label>Data de devolução</label>
+    <%= f.date_field :bring_back %>
+  </div>
+
+  <div class="field">
+    <label>Observação</label>
+    <%= f.text_area :obs %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Salvar" %>
+  </div>
+  
+<% end %>
+</div>

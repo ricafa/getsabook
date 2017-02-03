@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<center>
+<h1>Livros</h1>
+<%= form_tag books_path, :method => 'get' do %>
+  <h5>
+    <%= text_field_tag :byname, params[:byname] %>
+    <%= submit_tag "&#128269".html_safe() %>
+  </h5>
+<% end %>
+<%= link_to 'Novo livro', new_book_path, class: 'pure-button' %>
+</center>
+<br />
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Autor</th>
+      <th>Descrição</th>
+      <th>Disponível</th>
+      <th>Ativo</th>
+      <th ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td data-label="Nome"><%= book.name %></td>
+        <td data-label="Autor"><%= book.author %></td>
+        <td data-label="Descrição"><%= book.description %></td>
+        <td data-label="Disponível"><%= book.available? %></td>
+        <td data-label="Ativo"><%= book.active? %></td>
+        <td><%= link_to 'Ver mais', book, class: "pure-button"  %>
+        <%= link_to 'Editar', edit_book_path(book), class: "pure-button"  %>
+        <%= link_to 'Excluir', book, method: :delete, data: { confirm: 'Quer mesmo excluir esse livro?' }, class: "pure-button"  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

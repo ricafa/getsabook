@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<center>
+<h1>Alunos</h1>
+<%= form_tag students_path, :method => 'get' do %>
+  <h5>
+    <%= text_field_tag :byname, params[:byname] %>
+    <%= submit_tag "&#128269".html_safe() %>
+  </h5>
+<% end %>
+
+<%= link_to 'Novo Aluno', new_student_path, class: "button-success pure-button" %>
+</center>
+<br />
+<table>
+  <thead>
+    <tr>
+      <th><%= link_to "Nome", "/students/?withorder=name" %></th>
+      <th><%= link_to "Livros pendentes", '/students/?withorder=pending' %></th>
+      <th><%= link_to "Bloqueado", "/students/?withorder=blocked" %></th>
+      <th><%= link_to "Ativo", "/students/?withorder=active" %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td data-label="Nome"><%= student.name %></td>
+        <td data-label="Pendente"><%= student.pending %></td>
+        <td data-label="Bloqueado"><%= student.blocked? %></td>
+        <td data-label="Ativo"><%= student.active? %></td>
+        <td><%= link_to 'Ver mais', student, class: "pure-button" %>
+        <%= link_to 'Editar', edit_student_path(student), class: "pure-button" %>
+        <%= link_to 'Excluir', student, method: :delete, data: { confirm: 'Tem certeza?' }, class: "pure-button" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

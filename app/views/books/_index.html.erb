@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Autor</th>
+      <th>Descrição</th>
+      <th>Disponível</th>
+      <th>Ativo</th>
+      <th ></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+    <tr>
+      <td data-label="Nome"><%= book.name %></td>
+      <td data-label="Autor"><%= book.author %></td>
+      <td data-label="Descrição"><%= book.description %></td>
+      <td data-label="Disponível"><%= book.available? %></td>
+      <td data-label="Ativo"><%= book.active? %></td>
+      <td><%= link_to 'Ver mais', book, class: "pure-button"  %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
