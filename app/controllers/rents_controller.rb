@@ -5,7 +5,7 @@ class RentsController < ApplicationController
   # GET /rents.json
   def index
     @rents = Rent.where(returned: false)
-    
+
   end
 
   # GET /rents/1
@@ -32,7 +32,7 @@ class RentsController < ApplicationController
     @book.save
     respond_to do |format|
       if @rent.save
-        format.html { redirect_to @rent, notice: 'Criado com sucesso :D' }
+        format.html { redirect_to rents_url, notice: 'Criado com sucesso :D' }
         format.json { render :show, status: :created, location: @rent }
       else
         format.html { render :new }
