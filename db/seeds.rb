@@ -21,7 +21,7 @@ Book.create(books)
 puts "inserting rents"
 rents = []
 10.times do |n|
-  rents[n] = {student: n.to_i, book: n.to_i, bring_back: (Date.today+7)}
+  rents[n] = {student_id: n.to_i, book_id: n.to_i, bring_back: (Date.today+7)}
 end
 Rent.create(rents)
 if Rent.count > 1

@@ -16378,3 +16378,114 @@ Processing by RentsController#index as HTML
 Completed 200 OK in 131ms (Views: 118.1ms | ActiveRecord: 2.0ms)
 
 
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "books" ("id" serial primary key, "name" character varying, "author" character varying, "description" character varying, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "configurations" ("id" serial primary key, "unblocked_student" boolean, "daystoreturn" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "names" ("id" serial primary key, "author" character varying, "description" character varying, "edition" integer, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "rents" ("id" serial primary key, "student_id" integer, "book_id" integer, "returned" boolean DEFAULT 'f', "bring_back" date, "obs" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_book_id" ON "rents"  ("book_id")[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_student_id" ON "rents"  ("student_id")[0m
+  [1m[35m (31.3ms)[0m  [1m[35mCREATE TABLE "students" ("id" serial primary key, "name" character varying, "phone" character varying, "email" character varying, "blocked" boolean DEFAULT 'f', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (31.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (15.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20170127230744')[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES
+('20170126192439'),
+('20170126192509'),
+('20170126192545'),
+('20170126194123');
+
+[0m
+  [1m[35m (31.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-02-03 13:01:40 UTC], ["updated_at", 2017-02-03 13:01:40 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (46.9ms)[0m  [1m[35mCREATE TABLE "books" ("id" serial primary key, "name" character varying, "author" character varying, "description" character varying, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "configurations" ("id" serial primary key, "unblocked_student" boolean, "daystoreturn" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "names" ("id" serial primary key, "author" character varying, "description" character varying, "edition" integer, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "rents" ("id" serial primary key, "student_id" integer, "book_id" integer, "returned" boolean DEFAULT 'f', "bring_back" date, "obs" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_book_id" ON "rents"  ("book_id")[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_student_id" ON "rents"  ("student_id")[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "students" ("id" serial primary key, "name" character varying, "phone" character varying, "email" character varying, "blocked" boolean DEFAULT 'f', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20170127230744')[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES
+('20170126192439'),
+('20170126192509'),
+('20170126192545'),
+('20170126194123');
+
+[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno0"], ["email", "teste0@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno1"], ["email", "teste1@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno2"], ["email", "teste2@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno3"], ["email", "teste3@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno4"], ["email", "teste4@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno5"], ["email", "teste5@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno6"], ["email", "teste6@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno7"], ["email", "teste7@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (15.6ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno8"], ["email", "teste8@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno9"], ["email", "teste9@gmail.com"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro0"], ["author", "Machado 0"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro1"], ["author", "Machado 1"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (15.6ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro2"], ["author", "Machado 2"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro3"], ["author", "Machado 3"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro4"], ["author", "Machado 4"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro5"], ["author", "Machado 5"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (15.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro6"], ["author", "Machado 6"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro7"], ["author", "Machado 7"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro8"], ["author", "Machado 8"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro9"], ["author", "Machado 9"], ["created_at", 2017-02-03 13:01:41 UTC], ["updated_at", 2017-02-03 13:01:41 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
