@@ -17072,3 +17072,18 @@ Processing by RentsController#index as HTML
 Completed 200 OK in 565ms (Views: 516.7ms | ActiveRecord: 8.0ms)
 
 
+Started GET "/" for ::1 at 2017-02-03 11:28:31 -0200
+Processing by RentsController#index as HTML
+  Rendering rents/index.html.erb within layouts/application
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (0.0ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mStudent Load (4.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (112.0ms)
+Completed 200 OK in 620ms (Views: 550.6ms | ActiveRecord: 16.0ms)
+
+

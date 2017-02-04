@@ -50,3 +50,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #added gems
 gem 'pry'
+
+ruby "2.3.1"
