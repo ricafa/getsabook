@@ -24,4 +24,6 @@ test:
 
 production:
   <<: *default
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+  username: getsabook
   database: getsabook_production
