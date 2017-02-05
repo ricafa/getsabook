@@ -17103,3 +17103,883 @@ Processing by RentsController#index as HTML
 Completed 200 OK in 1896ms (Views: 1751.1ms | ActiveRecord: 34.8ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (15.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (280.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "getsabook_development"[0m
+  [1m[35m (246.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "getsabook_test"[0m
+  [1m[35m (1003.7ms)[0m  [1m[35mCREATE DATABASE "getsabook_development" ENCODING = 'unicode'[0m
+  [1m[35m (866.2ms)[0m  [1m[35mCREATE DATABASE "getsabook_test" ENCODING = 'unicode'[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "books" ("id" serial primary key, "name" character varying, "author" character varying, "description" character varying, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "configurations" ("id" serial primary key, "unblocked_student" boolean, "daystoreturn" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "names" ("id" serial primary key, "author" character varying, "description" character varying, "edition" integer, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (22.2ms)[0m  [1m[35mCREATE TABLE "rents" ("id" serial primary key, "student_id" integer, "book_id" integer, "returned" boolean DEFAULT 'f', "bring_back" date, "obs" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_book_id" ON "rents"  ("book_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_student_id" ON "rents"  ("student_id")[0m
+  [1m[35m (16.0ms)[0m  [1m[35mCREATE TABLE "students" ("id" serial primary key, "name" character varying, "phone" character varying, "email" character varying, "blocked" boolean DEFAULT 'f', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20170127230744')[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES
+('20170126192439'),
+('20170126192545'),
+('20170126194123');
+
+[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-02-05 12:31:45 UTC], ["updated_at", 2017-02-05 12:31:45 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "books" ("id" serial primary key, "name" character varying, "author" character varying, "description" character varying, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "configurations" ("id" serial primary key, "unblocked_student" boolean, "daystoreturn" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "names" ("id" serial primary key, "author" character varying, "description" character varying, "edition" integer, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "rents" ("id" serial primary key, "student_id" integer, "book_id" integer, "returned" boolean DEFAULT 'f', "bring_back" date, "obs" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_book_id" ON "rents"  ("book_id")[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_student_id" ON "rents"  ("student_id")[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "students" ("id" serial primary key, "name" character varying, "phone" character varying, "email" character varying, "blocked" boolean DEFAULT 'f', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20170127230744')[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES
+('20170126192439'),
+('20170126192545'),
+('20170126194123');
+
+[0m
+  [1m[35m (21.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (15.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno0"], ["email", "teste0@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno1"], ["email", "teste1@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno2"], ["email", "teste2@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno3"], ["email", "teste3@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno4"], ["email", "teste4@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno5"], ["email", "teste5@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno6"], ["email", "teste6@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno7"], ["email", "teste7@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno8"], ["email", "teste8@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno9"], ["email", "teste9@gmail.com"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (18.6ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro0"], ["author", "Machado 0"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro1"], ["author", "Machado 1"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro2"], ["author", "Machado 2"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro3"], ["author", "Machado 3"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro4"], ["author", "Machado 4"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro5"], ["author", "Machado 5"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro6"], ["author", "Machado 6"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro7"], ["author", "Machado 7"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro8"], ["author", "Machado 8"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro9"], ["author", "Machado 9"], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 0], ["book_id", 0], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 1], ["book_id", 1], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 2], ["book_id", 2], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 3], ["book_id", 3], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 4], ["book_id", 4], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 5], ["book_id", 5], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 6], ["book_id", 6], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 7], ["book_id", 7], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 8], ["book_id", 8], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 9], ["book_id", 9], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:31:46 UTC], ["updated_at", 2017-02-05 12:31:46 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno0"], ["email", "teste0@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno1"], ["email", "teste1@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno2"], ["email", "teste2@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno3"], ["email", "teste3@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (15.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno4"], ["email", "teste4@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno5"], ["email", "teste5@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno6"], ["email", "teste6@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno7"], ["email", "teste7@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno8"], ["email", "teste8@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno9"], ["email", "teste9@gmail.com"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro0"], ["author", "Machado 0"], ["created_at", 2017-02-05 12:32:05 UTC], ["updated_at", 2017-02-05 12:32:05 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro1"], ["author", "Machado 1"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro2"], ["author", "Machado 2"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro3"], ["author", "Machado 3"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro4"], ["author", "Machado 4"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro5"], ["author", "Machado 5"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro6"], ["author", "Machado 6"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro7"], ["author", "Machado 7"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro8"], ["author", "Machado 8"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro9"], ["author", "Machado 9"], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 1], ["book_id", 1], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 2], ["book_id", 2], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mBook Load (15.6ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 3], ["book_id", 3], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 4], ["book_id", 4], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 5], ["book_id", 5], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 6], ["book_id", 6], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 7], ["book_id", 7], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 8], ["book_id", 8], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (15.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 9], ["book_id", 9], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:32:06 UTC], ["updated_at", 2017-02-05 12:32:06 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents"[0m
+Started GET "/" for ::1 at 2017-02-05 10:32:28 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RentsController#index as HTML
+  Rendering rents/index.html.erb within layouts/application
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (0.0ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (189.2ms)
+Completed 500 Internal Server Error in 414ms (ActiveRecord: 21.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `name_with_phone' for nil:NilClass):
+    30:   <tbody>
+    31:     <% @rents.each do |rent| %>
+    32:       <tr>
+    33:         <td data-label="Aluno"><%= link_to rent.student.name_with_phone, student_url(rent.student_id) %></td>
+    34:         <td data-label="Livro"><%= rent.book.name if rent.book %></td>
+    35:         <td data-label="Returned"><%= rent.retur %></td>
+    36:         <td data-label="Devolver"><%= rent.bring_back.strftime("%d %b %Y ") %></td>
+  
+app/views/rents/index.html.erb:33:in `block in _app_views_rents_index_html_erb__150850146_43118920'
+app/views/rents/index.html.erb:31:in `_app_views_rents_index_html_erb__150850146_43118920'
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (9.0ms)
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2316.1ms)
+Started GET "/students" for ::1 at 2017-02-05 10:34:21 -0200
+Processing by StudentsController#index as HTML
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mStudent Load (2.0ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 1)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 2)[0m
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 3)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 4)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 5)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 6)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 7)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 8)[0m
+  [1m[35m (2.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 9)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 10)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 12)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 13)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 14)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 15)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 16)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 17)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 18)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 19)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 20)[0m
+  Rendered students/index.html.erb within layouts/application (112.0ms)
+Completed 200 OK in 908ms (Views: 836.5ms | ActiveRecord: 30.9ms)
+
+
+Started GET "/students/?withorder=pending" for ::1 at 2017-02-05 10:35:03 -0200
+Processing by StudentsController#index as HTML
+  Parameters: {"withorder"=>"pending"}
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 1)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 20)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 2)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 3)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 4)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (15.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 5)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 6)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 7)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 8)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 9)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 10)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 12)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 13)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 14)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 15)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 16)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 17)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 18)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 19)[0m
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 1)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 2)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 3)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 4)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 5)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 6)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 7)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 8)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 9)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 10)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 12)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 13)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 14)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 15)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 16)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 17)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 18)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 19)[0m
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 20)[0m
+  Rendered students/index.html.erb within layouts/application (37.3ms)
+Completed 200 OK in 403ms (Views: 307.6ms | ActiveRecord: 17.6ms)
+
+
+Started GET "/students/1" for ::1 at 2017-02-05 10:35:11 -0200
+Processing by StudentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "rents"."book_id" FROM "rents" WHERE "rents"."student_id" = $1[0m  [["student_id", 1]]
+  Rendering students/show.html.erb within layouts/application
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT "books".* FROM "books" WHERE "books"."id" IN (1, 1)[0m
+  Rendered books/_index.html.erb (31.3ms)
+  Rendered students/show.html.erb within layouts/application (59.9ms)
+Completed 200 OK in 349ms (Views: 292.6ms | ActiveRecord: 17.6ms)
+
+
+Started GET "/students" for ::1 at 2017-02-05 10:35:17 -0200
+Processing by StudentsController#index as HTML
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 1)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 2)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 3)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 4)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 5)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 6)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 7)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 8)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 9)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 10)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 12)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 13)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 14)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 15)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 16)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 17)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 18)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 19)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 20)[0m
+  Rendered students/index.html.erb within layouts/application (61.4ms)
+Completed 200 OK in 387ms (Views: 345.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/notreturned" for ::1 at 2017-02-05 10:35:19 -0200
+Processing by PagesController#notreturned as HTML
+  Rendering pages/notreturned.html.erb within layouts/application
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned = 'f' and bring_back <= '2017-02-05')[0m
+  Rendered pages/notreturned.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 295ms (Views: 254.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2017-02-05 10:35:21 -0200
+Processing by RentsController#index as HTML
+  Rendering rents/index.html.erb within layouts/application
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (0.0ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (48.9ms)
+Completed 500 Internal Server Error in 198ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `name_with_phone' for nil:NilClass):
+    30:   <tbody>
+    31:     <% @rents.each do |rent| %>
+    32:       <tr>
+    33:         <td data-label="Aluno"><%= link_to rent.student.name_with_phone, student_url(rent.student_id) %></td>
+    34:         <td data-label="Livro"><%= rent.book.name if rent.book %></td>
+    35:         <td data-label="Returned"><%= rent.retur %></td>
+    36:         <td data-label="Devolver"><%= rent.bring_back.strftime("%d %b %Y ") %></td>
+  
+app/views/rents/index.html.erb:33:in `block in _app_views_rents_index_html_erb__150850146_108252260'
+app/views/rents/index.html.erb:31:in `_app_views_rents_index_html_erb__150850146_108252260'
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.0ms)
+Started GET "/rents" for ::1 at 2017-02-05 10:35:24 -0200
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+Processing by RentsController#index as HTML
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2542.9ms)
+  Rendering rents/index.html.erb within layouts/application
+Started GET "/books" for ::1 at 2017-02-05 10:35:27 -0200
+  [1m[35m (742.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (71.1ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (58.2ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (2892.4ms)
+Completed 500 Internal Server Error in 4417ms (ActiveRecord: 871.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `name_with_phone' for nil:NilClass):
+    30:   <tbody>
+    31:     <% @rents.each do |rent| %>
+    32:       <tr>
+    33:         <td data-label="Aluno"><%= link_to rent.student.name_with_phone, student_url(rent.student_id) %></td>
+    34:         <td data-label="Livro"><%= rent.book.name if rent.book %></td>
+    35:         <td data-label="Returned"><%= rent.retur %></td>
+    36:         <td data-label="Devolver"><%= rent.bring_back.strftime("%d %b %Y ") %></td>
+  
+app/views/rents/index.html.erb:33:in `block in _app_views_rents_index_html_erb__150850146_99161940'
+app/views/rents/index.html.erb:31:in `_app_views_rents_index_html_erb__150850146_99161940'
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.0ms)
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2347.7ms)
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (2.0ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  Rendered books/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 290ms (Views: 248.4ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/books/new" for ::1 at 2017-02-05 10:35:54 -0200
+Processing by BooksController#new as HTML
+  Rendering books/new.html.erb within layouts/application
+  Rendered books/_form.html.erb (79.1ms)
+  Rendered books/new.html.erb within layouts/application (113.5ms)
+Completed 200 OK in 374ms (Views: 344.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/books" for ::1 at 2017-02-05 10:36:00 -0200
+Processing by BooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"DtimE5EdUxh9EdOACliMM0dYe5ZFUgsvu7TA04uuLC6Y3qvy5QElfA+0GpcbW/ucMADnRcIoSQNjbEFYs7FbRw==", "book"=>{"name"=>"teste", "author"=>"teste", "description"=>"teste", "available"=>"1", "active"=>"1"}, "commit"=>"Create Book"}
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "description", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "teste"], ["author", "teste"], ["description", "teste"], ["created_at", 2017-02-05 12:36:00 UTC], ["updated_at", 2017-02-05 12:36:00 UTC]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/books/21
+Completed 302 Found in 10ms (ActiveRecord: 2.6ms)
+
+
+Started GET "/books/21" for ::1 at 2017-02-05 10:36:00 -0200
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering books/show.html.erb within layouts/application
+  Rendered books/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 273ms (Views: 230.1ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/books" for ::1 at 2017-02-05 10:36:04 -0200
+Processing by BooksController#index as HTML
+  Rendering books/index.html.erb within layouts/application
+  [1m[36mBook Load (15.6ms)[0m  [1m[34mSELECT "books".* FROM "books"[0m
+  Rendered books/index.html.erb within layouts/application (24.6ms)
+Completed 200 OK in 274ms (Views: 224.9ms | ActiveRecord: 15.6ms)
+
+
+Started GET "/students" for ::1 at 2017-02-05 10:36:10 -0200
+Processing by StudentsController#index as HTML
+  Rendering students/index.html.erb within layouts/application
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT "students".* FROM "students"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 1)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 2)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 3)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 4)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 5)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 6)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 7)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 8)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 9)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 10)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 11)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 12)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 13)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 14)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 15)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 16)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 17)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 18)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 19)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE (returned =  'f' and bring_back <= '2017-02-05' and student_id = 20)[0m
+  Rendered students/index.html.erb within layouts/application (46.9ms)
+Completed 200 OK in 324ms (Views: 285.7ms | ActiveRecord: 0.0ms)
+
+
+  [1m[36mRent Load (0.0ms)[0m  [1m[34mSELECT  "rents".* FROM "rents" WHERE "rents"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Started GET "/" for ::1 at 2017-02-05 10:38:00 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RentsController#index as HTML
+  Rendering rents/index.html.erb within layouts/application
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (0.5ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (1.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (195.2ms)
+Completed 500 Internal Server Error in 431ms (ActiveRecord: 16.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `name_with_phone' for nil:NilClass):
+    30:   <tbody>
+    31:     <% @rents.each do |rent| %>
+    32:       <tr>
+    33:         <td data-label="Aluno"><%= link_to "#{rent.student.name_with_phone}", student_url(rent.student_id) %></td>
+    34:         <td data-label="Livro"><%= rent.book.name if rent.book %></td>
+    35:         <td data-label="Returned"><%= rent.retur %></td>
+    36:         <td data-label="Devolver"><%= rent.bring_back.strftime("%d %b %Y ") %></td>
+  
+app/views/rents/index.html.erb:33:in `block in _app_views_rents_index_html_erb___2139246664_44234760'
+app/views/rents/index.html.erb:31:in `_app_views_rents_index_html_erb___2139246664_44234760'
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (9.0ms)
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2369.8ms)
+Started GET "/" for ::1 at 2017-02-05 10:38:34 -0200
+Processing by RentsController#index as HTML
+  Rendering rents/index.html.erb within layouts/application
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (1.0ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (1.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (62.0ms)
+Completed 500 Internal Server Error in 221ms (ActiveRecord: 7.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `name' for nil:NilClass):
+    30:   <tbody>
+    31:     <% @rents.each do |rent| %>
+    32:       <tr>
+    33:         <td data-label="Aluno"><%= link_to rent.student.name, student_url(rent.student_id) %></td>
+    34:         <td data-label="Livro"><%= rent.book.name if rent.book %></td>
+    35:         <td data-label="Returned"><%= rent.retur %></td>
+    36:         <td data-label="Devolver"><%= rent.bring_back.strftime("%d %b %Y ") %></td>
+  
+app/views/rents/index.html.erb:33:in `block in _app_views_rents_index_html_erb___2139246664_40617320'
+app/views/rents/index.html.erb:31:in `_app_views_rents_index_html_erb___2139246664_40617320'
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (11.0ms)
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.5ms)
+  Rendering C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2344.9ms)
+Started GET "/" for ::1 at 2017-02-05 10:39:16 -0200
+Processing by RentsController#index as HTML
+  Rendering rents/index.html.erb within layouts/application
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (1.0ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 0], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (224.2ms)
+Completed 200 OK in 911ms (Views: 844.1ms | ActiveRecord: 27.5ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (248.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "getsabook_development"[0m
+  [1m[35m (248.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "getsabook_test"[0m
+  [1m[35m (889.3ms)[0m  [1m[35mCREATE DATABASE "getsabook_development" ENCODING = 'unicode'[0m
+  [1m[35m (884.3ms)[0m  [1m[35mCREATE DATABASE "getsabook_test" ENCODING = 'unicode'[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "books" ("id" serial primary key, "name" character varying, "author" character varying, "description" character varying, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "configurations" ("id" serial primary key, "unblocked_student" boolean, "daystoreturn" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "names" ("id" serial primary key, "author" character varying, "description" character varying, "edition" integer, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (23.6ms)[0m  [1m[35mCREATE TABLE "rents" ("id" serial primary key, "student_id" integer, "book_id" integer, "returned" boolean DEFAULT 'f', "bring_back" date, "obs" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_book_id" ON "rents"  ("book_id")[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_student_id" ON "rents"  ("student_id")[0m
+  [1m[35m (19.1ms)[0m  [1m[35mCREATE TABLE "students" ("id" serial primary key, "name" character varying, "phone" character varying, "email" character varying, "blocked" boolean DEFAULT 'f', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20170127230744')[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES
+('20170126192439'),
+('20170126192545'),
+('20170126194123');
+
+[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-02-05 12:41:28 UTC], ["updated_at", 2017-02-05 12:41:28 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "books" ("id" serial primary key, "name" character varying, "author" character varying, "description" character varying, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (20.1ms)[0m  [1m[35mCREATE TABLE "configurations" ("id" serial primary key, "unblocked_student" boolean, "daystoreturn" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "names" ("id" serial primary key, "author" character varying, "description" character varying, "edition" integer, "available" boolean DEFAULT 't', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "rents" ("id" serial primary key, "student_id" integer, "book_id" integer, "returned" boolean DEFAULT 'f', "bring_back" date, "obs" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_book_id" ON "rents"  ("book_id")[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE  INDEX  "index_rents_on_student_id" ON "rents"  ("student_id")[0m
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE "students" ("id" serial primary key, "name" character varying, "phone" character varying, "email" character varying, "blocked" boolean DEFAULT 'f', "active" boolean DEFAULT 't', "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (15.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES ('20170127230744')[0m
+  [1m[35m (0.0ms)[0m  [1m[32mINSERT INTO schema_migrations (version) VALUES
+('20170126192439'),
+('20170126192545'),
+('20170126194123');
+
+[0m
+  [1m[35m (22.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-02-05 12:41:28 UTC], ["updated_at", 2017-02-05 12:41:28 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.5ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno0"], ["email", "teste0@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno1"], ["email", "teste1@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno2"], ["email", "teste2@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno3"], ["email", "teste3@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno4"], ["email", "teste4@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno5"], ["email", "teste5@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno6"], ["email", "teste6@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno7"], ["email", "teste7@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno8"], ["email", "teste8@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "students" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Aluno9"], ["email", "teste9@gmail.com"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (18.1ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro0"], ["author", "Machado 0"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro1"], ["author", "Machado 1"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro2"], ["author", "Machado 2"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro3"], ["author", "Machado 3"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro4"], ["author", "Machado 4"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (15.8ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro5"], ["author", "Machado 5"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro6"], ["author", "Machado 6"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro7"], ["author", "Machado 7"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro8"], ["author", "Machado 8"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "books" ("name", "author", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Livro9"], ["author", "Machado 9"], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 1], ["book_id", 1], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 2], ["book_id", 2], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 3], ["book_id", 3], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 4], ["book_id", 4], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 5], ["book_id", 5], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 6], ["book_id", 6], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 7], ["book_id", 7], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 8], ["book_id", 8], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  [1m[32mINSERT INTO "rents" ("student_id", "book_id", "bring_back", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["student_id", 9], ["book_id", 9], ["bring_back", Sun, 12 Feb 2017], ["created_at", 2017-02-05 12:41:29 UTC], ["updated_at", 2017-02-05 12:41:29 UTC]]
+  [1m[35m (0.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents"[0m
+Started GET "/" for ::1 at 2017-02-05 10:41:51 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by RentsController#index as HTML
+  Rendering rents/index.html.erb within layouts/application
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (1.0ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (2.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.5ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mBook Load (2.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mStudent Load (2.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (266.8ms)
+Completed 200 OK in 1119ms (Views: 993.7ms | ActiveRecord: 39.5ms)
+
+
+Started GET "/" for ::1 at 2017-02-05 10:42:41 -0200
+Processing by RentsController#index as HTML
+  Rendering rents/index.html.erb within layouts/application
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mRent Load (0.5ms)[0m  [1m[34mSELECT "rents".* FROM "rents" WHERE "rents"."returned" = $1[0m  [["returned", false]]
+  [1m[36mStudent Load (2.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mBook Load (2.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mBook Load (0.5ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mBook Load (3.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mStudent Load (1.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mBook Load (0.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mStudent Load (0.0ms)[0m  [1m[34mSELECT  "students".* FROM "students" WHERE "students"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mBook Load (1.0ms)[0m  [1m[34mSELECT  "books".* FROM "books" WHERE "books"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  Rendered rents/index.html.erb within layouts/application (130.0ms)
+Completed 200 OK in 469ms (Views: 407.6ms | ActiveRecord: 21.0ms)
+
+

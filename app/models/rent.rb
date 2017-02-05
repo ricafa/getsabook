@@ -1,6 +1,6 @@
 class Rent < ApplicationRecord
-  belongs_to :student
-  belongs_to :book
+  belongs_to :student, class_name: 'Student', foreign_key: 'student_id'
+  belongs_to :book, class_name: 'Book', foreign_key: 'book_id'
 
   validates_presence_of :student_id, :book_id, :bring_back
 

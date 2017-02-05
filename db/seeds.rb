@@ -20,7 +20,7 @@ end
 Book.create(books)
 puts "inserting rents"
 rents = []
-10.times do |n|
+1.upto(9) do |n|
   rents[n] = {student_id: n.to_i, book_id: n.to_i, bring_back: (Date.today+7)}
 end
 Rent.create(rents)
