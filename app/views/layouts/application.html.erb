@@ -33,6 +33,14 @@
             </ul></center>
         </div>
     </div>
+    <% if notice.present? %>
+      <!--<div class="isa_msg"><%= notice %></div> -->
+      <div id="alert">
+        <a class="alert" href="#alert"><%= notice %></a>
+      </div>
+    <% end %>
+
+
     <div id='main'>
       <%= yield %>
     </div>
