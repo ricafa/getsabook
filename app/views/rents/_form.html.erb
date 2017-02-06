@@ -13,7 +13,7 @@
 <div class="pure-form">
   <div class="field">
     <label>Aluno</label>
-    <%= f.collection_select(:student_id, Student.where(blocked: false), :id, :rented, {prompt: "Selecione um aluno"}) %>
+    <%= f.collection_select(:student_id, Student.where(blocked: false, active: true), :id, :rented, {prompt: "Selecione um aluno"}) %>
   </div>
 
   <div class="field">
@@ -34,6 +34,6 @@
   <div class="actions">
     <%= f.submit "Salvar" %>
   </div>
-  
+
 <% end %>
 </div>

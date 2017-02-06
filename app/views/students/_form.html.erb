@@ -12,31 +12,31 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %>
+    <%= label_tag('Nome:') %>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :phone %>
+    <%= label_tag('Telefone:') %>
     <%= f.text_field :phone %>
   </div>
 
   <div class="field">
-    <%= f.label :email %>
+    <%= label_tag('Email:') %>
     <%= f.text_field :email %>
   </div>
 
   <div class="field">
-    <%= f.label :blocked %>
+    <%= label_tag('Bloqueado') %>
     <%= f.check_box :blocked %>
   </div>
 
   <div class="field">
-    <%= f.label :active %>
+    <%= label_tag('Ativo') %>
     <%= f.check_box :active %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Salvar" %>
   </div>
 <% end %>

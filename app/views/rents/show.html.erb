@@ -1,20 +1,20 @@
 <p>
-  <strong>Student:</strong>
+  <strong>Aluno:</strong>
   <%= @rent.student.name if @rent.student %>
 </p>
 
 <p>
-  <strong>Book:</strong>
+  <strong>Livro:</strong>
   <%= @rent.book.name if @rent.book %>
 </p>
 
 <p>
-  <strong>Returned:</strong>
+  <strong>Devolvido:</strong>
   <%= @rent.returned %>
 </p>
 
 <p>
-  <strong>Bring back:</strong>
+  <strong>Devolveu:</strong>
   <%= @rent.bring_back.strftime("%A, %d %b %Y ") %>
 </p>
 
@@ -23,5 +23,5 @@
   <%= @rent.obs %>
 </p>
 
-<%= link_to 'Edit', edit_rent_path(@rent) %> |
-<%= link_to 'Back', rents_path %>
+<%= link_to 'Editar', edit_rent_path(@rent) %> |
+<%= link_to 'Voltar', rents_path %>
